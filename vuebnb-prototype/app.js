@@ -6,6 +6,33 @@ var app = new Vue({
     about: sample.about,
     headerImageStyle : {
       'background-image': 'url(sample/header.jpg)'
+    },
+    amenities: sample.amenities,
+    prices: sample.prices,
+    contracted: true,
+    modalOpen: false,
+  },
+  methods : {
+    escapeKeyListener : function(evt) {
+      if(evt.keyCode === 27 && this.modelOpen) {
+        this.modelOpen = false;
+      }
     }
+  },
+  watch: {
+    modalOpen: function() {
+      var className = 'modal-open';
+      if (this.modalOpen) {
+        document.body.classList.add(className);
+      } else {
+        document.body.classList.remove(className);
+      }
+    }
+  },
+  created: function() {
+    document.addEventListener('keyup', this.escapeKeyListener);
+  },
+  destroyed: function() {
+    ocument.removeEventListener('keyup', this.escapeKeyListener);
   }
 });
