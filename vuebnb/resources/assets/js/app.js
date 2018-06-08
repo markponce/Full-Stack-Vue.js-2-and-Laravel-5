@@ -39,4 +39,3 @@ var app = new Vue({
     ocument.removeEventListener('keyup', this.escapeKeyListener);
   }
 });
-console.log("Testing watch");
