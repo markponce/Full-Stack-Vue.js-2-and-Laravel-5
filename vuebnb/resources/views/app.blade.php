@@ -7,6 +7,9 @@
     <title>Vuebnb</title>
     <link rel="shortcut icon" type="image/png" href="{{ asset('images/favicon.ico') }}"/>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css">
+    <script type="text/javascript">
+      window.vuebnb_listing_model = "{!! addslashes(json_encode($model)) !!}"
+    </script>
   </head>
   <body>
     <div id="toolbar">
@@ -60,7 +63,7 @@
           &times;
         </button>
         <div class="modal-content">
-          <img src="{{ asset('images/header.jpg') }}"/>
+          <img v-bind:src="images[0]"/>
         </div>
       </div>
     </div>
