@@ -20,3 +20,13 @@ Route::get('/', function () {
   return view('app');
     // echo 123;
 });
+
+// use App\Listing;
+
+// Route::get('/listing/{listing}', function (Listing $listing) {
+//   // echo $listing->id // will equal 5 for route /listing/5
+// 	$model = $listing->toArray();
+// 	return view('app', [ 'model' => $model ]);
+// });
+
+Route::get('/listing/{listing}', 'ListingController@get_listing_web');
