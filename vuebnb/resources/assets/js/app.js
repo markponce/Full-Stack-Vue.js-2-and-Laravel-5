@@ -1,20 +1,22 @@
 import Vue from 'vue';
 import sample from './data';
+import "core-js/fn/object/assign";
+import { populateAmenitiesAndPrices } from './helpers';
+
+let model = JSON.parse(window.vuebnb_listing_model);
+model = populateAmenitiesAndPrices(model);
+
+console.log(model);
 
 var app = new Vue({
   el: '#app',
-  data: {
-    title: sample.title,
-    address: sample.address,
-    about: sample.about,
-    headerImageStyle : {
-      'background-image': 'url(images/header.jpg)'
+  data: Object.assign(model, {
+    headerImageStyle: {
+      'background-image': 'url(' + model.images[0] +')'
     },
-    amenities: sample.amenities,
-    prices: sample.prices,
     contracted: true,
-    modalOpen: false,
-  },
+    modalOpen: false
+  }),
   methods : {
     escapeKeyListener : function(evt) {
       if(evt.keyCode === 27 && this.modelOpen) {
@@ -36,6 +38,6 @@ var app = new Vue({
     document.addEventListener('keyup', this.escapeKeyListener);
   },
   destroyed: function() {
-    ocument.removeEventListener('keyup', this.escapeKeyListener);
+    document.removeEventListener('keyup', this.escapeKeyListener);
   }
 });
